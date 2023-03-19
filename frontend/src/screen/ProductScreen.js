@@ -64,9 +64,13 @@ const ProductScreen = () => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <div className="d-grid gap-2">
-                <Button className="btn-block" type="button" disabled={product.countInStock===0}>
+                  <Button
+                    className="btn-block"
+                    type="button"
+                    disabled={product.countInStock === 0}
+                  >
                     Add To Cart
-                </Button>
+                  </Button>
                 </div>
               </ListGroup.Item>
             </ListGroup>
