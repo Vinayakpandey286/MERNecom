@@ -17,7 +17,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { listProductsDetails } from "../actions/productActions";
 
 const ProductScreen = () => {
-  const [qty, setQty] = useState(0);
+  const [qty, setQty] = useState(1);
 
   const param = useParams();
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ const ProductScreen = () => {
 
   useEffect(() => {
     dispatch(listProductsDetails(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const addToCartHandler = () => {
     navigate(`/cart/${id}?qty=${qty}`);

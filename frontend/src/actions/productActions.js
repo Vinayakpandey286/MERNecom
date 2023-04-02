@@ -7,7 +7,7 @@ import {
   PRODUCT_LIST_FAIL,
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
-  PRODUCT_DETAILS_FAIL,
+  PRODUCT_DETAILS_FAIL, 
 } from "../constants/productConstants";
 
 export const listProducts = () => async (dispatch) => {
@@ -38,7 +38,6 @@ export const listProductsDetails = (id) => async (dispatch) => {
 
     const { data } = await axios.get(`/api/products/${id}`);
     //axios will look for value in port 5000 so set proxy in package.json in front end
-
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
       payload: data,
