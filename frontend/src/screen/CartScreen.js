@@ -11,7 +11,7 @@ import {
   Form,
 } from "react-bootstrap";
 import Message from "../components/Message";
-import { addToCart ,removeFromCart } from "../actions/cartActions";
+import { addToCart, removeFromCart } from "../actions/cartActions";
 import { useParams, useSearchParams, useNavigate } from "react-router-dom";
 
 const CartScreen = () => {
@@ -28,11 +28,13 @@ const CartScreen = () => {
   const { cartItems } = cart;
 
   useEffect(() => {
-    dispatch(addToCart(id, qty));
+    if (id) {
+      dispatch(addToCart(id, qty));
+    }
   }, [dispatch, id, qty]);
 
   const removeFromCartHandler = (id) => {
-    dispatch(removeFromCart(id))
+    dispatch(removeFromCart(id));
   };
 
   const checkoutHandler = () => {
