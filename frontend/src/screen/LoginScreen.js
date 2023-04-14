@@ -19,10 +19,12 @@ const LoginScreen = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
-  const redirect = SearchParam.get("redirect")
+  let redirect = SearchParam.get("redirect")
     ? SearchParam.get("redirect")
     : "/";
-
+  if (redirect === "shipping") {
+    redirect = "/shipping";
+  }
   useEffect(() => {
     if (userInfo) {
       navigate(redirect);
