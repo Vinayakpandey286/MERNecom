@@ -22,9 +22,8 @@ const LoginScreen = () => {
   let redirect = SearchParam.get("redirect")
     ? SearchParam.get("redirect")
     : "/";
-  if (redirect === "shipping") {
-    redirect = "/shipping";
-  }
+  redirect = `/${redirect}`
+  
   useEffect(() => {
     if (userInfo) {
       navigate(redirect);
