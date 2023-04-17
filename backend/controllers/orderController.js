@@ -35,7 +35,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
   }
 });
 
-//@get order by id GET /api/orders---Private router
+//@get order by id GET /api/orders/:id---Private router
 
 const getOrderById = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id).populate(
@@ -50,4 +50,29 @@ const getOrderById = asyncHandler(async (req, res) => {
   }
 });
 
-export { addOrderItems, getOrderById };
+
+
+//@update order to paid GET /api/orders/:id---Private router
+
+const updateOrderToPaid = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id)
+
+  if (order) {
+    order.isPaid = true
+    order.paidAt = Date.now()
+    order.paymentResult ={
+      id:req.body.id,
+      status:req.body.update.time,
+      update_time:req.body.update_time,
+      email_address:req.body.prayer.email_address
+    }
+
+    const  updatedOrder = await order.save()
+
+    res.json(updatedOrder)
+  } else {
+    throw new Error("Order not Found");
+  }
+});
+
+export { addOrderItems, getOrderById , updateOrderToPaid };
