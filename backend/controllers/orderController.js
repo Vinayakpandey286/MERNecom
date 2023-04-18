@@ -50,29 +50,27 @@ const getOrderById = asyncHandler(async (req, res) => {
   }
 });
 
-
-
 //@update order to paid GET /api/orders/:id---Private router
 
 const updateOrderToPaid = asyncHandler(async (req, res) => {
-  const order = await Order.findById(req.params.id)
+  const order = await Order.findById(req.params.id);
 
   if (order) {
-    order.isPaid = true
-    order.paidAt = Date.now()
-    order.paymentResult ={
-      id:req.body.id,
-      status:req.body.update.time,
-      update_time:req.body.update_time,
-      email_address:req.body.prayer.email_address
-    }
+    order.isPaid = true;
+    order.paidAt = Date.now();
+    order.paymentResult = {
+      id: req.body.id,
+      status: req.body.status,
+      update_time: req.body.update_time,
+      email_address: req.body.payer.email_address,
+    };
 
-    const  updatedOrder = await order.save()
+    const updatedOrder = await order.save();
 
-    res.json(updatedOrder)
+    res.json(updatedOrder);
   } else {
     throw new Error("Order not Found");
   }
 });
 
-export { addOrderItems, getOrderById , updateOrderToPaid };
+export { addOrderItems, getOrderById, updateOrderToPaid };

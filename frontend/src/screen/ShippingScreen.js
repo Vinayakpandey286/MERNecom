@@ -24,7 +24,7 @@ const ShippingScreen = () => {
     navigate("/payment");
   };
 
-  return (
+  return ( 
     <FormContainer>
       <CheckoutSteps step1 step2/>
       <h1>Shipping</h1>
