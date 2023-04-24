@@ -20,6 +20,9 @@ import {
   PRODUCT_CREATE_REVIEW_REQUEST,
   PRODUCT_CREATE_REVIEW_SUCCESS,
   PRODUCT_CREATE_REVIEW_FAIL,
+  PRODUCT_TOP_REQUEST,
+  PRODUCT_TOP_SUCCESS,
+  PRODUCT_TOP_FAIL,
 } from "../constants/productConstants";
 
 export const listProducts =
@@ -205,3 +208,27 @@ export const createProductReview =
       });
     }
   };
+
+export const listTopProducts = () => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_TOP_REQUEST });
+
+    const { data } = await axios.get(
+      "/api/products/top"
+    );
+    //axios will look for value in port 5000 so set proxy in package.json in front end
+
+    dispatch({
+      type: PRODUCT_TOP_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_TOP_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

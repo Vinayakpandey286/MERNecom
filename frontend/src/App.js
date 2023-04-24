@@ -77,7 +77,7 @@ const App = () => {
             <Route exact path="/search/:keyword" element={<HomeScreen />}>
               {" "}
             </Route>
-            <Route path="/page/:pageNumber" element={<HomeScreen />}>
+            <Route exact path="/page/:pageNumber" element={<HomeScreen />}>
               {" "}
             </Route>
             <Route
